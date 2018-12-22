@@ -32,7 +32,7 @@
 								<li><a href="#work">Tasks</a></li>
 								<li><a href="#contact">Contact</a></li>
 								<li><a href="#register">Register</a></li>
-								<!--<li><a href="#elements">Elements</a></li>-->
+								<li><a href="#elements">Elements</a></li>
 							</ul>
 						</nav>
 					</header>
@@ -56,9 +56,27 @@
 								<h2 class="major">Tasks</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 								<h3>Flask Server Challange | 15th January 2019</h3>
-								<p>Ada wants to plan the next developers meetup. As tasks stack up, she thinks that a todo list app might help her manage the event better.</p>
-								<P>She recalls she had frontend for a simple Android ToDo List App she developed in a previous dev meet. But she lacks the backend for it. Since she has a lot of work to do, she can't develop the server so soon.You may develop the solutions in groups.</p>
-								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+								<p>Aki wants to plan the next developers meetup. As tasks stack up, he thinks that a todo list app might help him manage the event better.</p>
+								<P>He recalls He had thought for a simple Android ToDo List App in a previous dev meet. But He lacks any development for the app. Since he has a lot of work to do, he can't develop the frontend so soon. <br>
+									<strong>You may develop the solutions in groups.</strong></p>
+								<p><strong>Task</strong><br>
+								Help Aki developing a simple Frontend for his ToDo app.<br>
+								<br>
+								<strong>Level 0: Easy - Get a webpage up and running having dummy ToDo data.</strong><br>
+								<ol>
+									<li>Create a front end page having orange Background and Black Text</li>
+									<li>Give CodeWithCoffee ToDo App title and Heading</li>
+
+								
+
+								</ol>
+
+
+
+
+							</p>
+
+
 							</article>
 
 						<!-- About -->
@@ -127,42 +145,40 @@
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 								
 								<p>Registration is absolutely free. Register yourself here to participate in CodeWithCoffee</p>
-								<form method="post" action="#">
+								<form name="machine" method="post" action="thankyou.html">
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
+											<input type="text" placeholder="Name *" name="name" id="name" required/>
 										</div>
 										<div class="field half">
 											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
+											<input type="text" placeholder="Email Address *" name="email" id="email" required/>
 										</div>
 										<div class="field half">
 											<label for="roll">Enrollment Number</label>
-											<input type="text" name="roll" id="roll">
+											<input type="text" placeholder="Enrollment Number *"  name="roll" id="roll" required>
 										</div>
 										<div class="field half">
 											<label for="phone">Phone Number</label>
-											<input type="text" name="phone" id="phone">
+											<input type="text" placeholder="Phone Number *" name="phone" id="phone" required>
 										</div>
 										<div class="field half">
 											<label for="roll">Year</label>
-											<input type="text" name="year" id="year">
+											<input type="text" placeholder="Year *"  name="year" id="year" required>
 										</div>
 										<div class="field half">
 											<label for="roll">Branch</label>
-											<input type="text" name="branch" id="branch">
+											<input type="text" placeholder="Branch *"  name="branch" id="branch" required>
 										</div>
+										<div class="field ">
+												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+												<label for="demo-priority-low">I agree to the Code of Conducts</label>
+											</div>
 									</div>
-									<div class="field">
-										<label> I agree to the terms and conditions
-  											<input type="checkbox" checked="checked">
-  											<span class="checkmark"></span>
-											</label>
-	
-								</div>
+									
 									<ul class="actions">
-										<li><input type="submit" value="Register" class="primary" /></li>
+										<li><input type="submit" name="Submit" value="Register" class="primary" /></li>
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
 								</form>
@@ -172,6 +188,68 @@
 									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
 								</ul>
+								<div class="loading js-loading is-hidden">
+     <div class="loading-spinner">
+        <svg><circle cx="25" cy="25" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>
+      </div>
+    </div>
+    <p class="js-success-message is-hidden" align="center" style="font-size: 20px;">Thank you for the registration!</p>
+    <p class="js-error-message is-hidden" align="center"  style="font-size: 20px;">Error!</p>
+  
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx6vMEvvm_EgIqhYYr0UoGJjMWdsmSETv6HNEYZu3J661Ohle8/exec'
+    const form = document.forms['machine']
+    const loading = document.querySelector('.js-loading')
+    const successMessage = document.querySelector('.js-success-message')
+    const errorMessage = document.querySelector('.js-error-message')
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      showLoadingIndicator()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => showSuccessMessage(response))
+        .catch(error => showErrorMessage(error))
+    })
+    function showLoadingIndicator () {
+      form.classList.add('is-hidden')
+      loading.classList.remove('is-hidden')
+    }
+    function showSuccessMessage (response) {
+      console.log('Success!', response)
+      setTimeout(() => {
+        successMessage.classList.remove('is-hidden')
+        loading.classList.add('is-hidden')
+      }, 500)
+    }
+    function showErrorMessage (error) {
+      console.error('Error!', error.message)
+      setTimeout(() => {
+        errorMessage.classList.remove('is-hidden')
+        loading.classList.add('is-hidden')
+      }, 500)
+    }
+  </script>
+
+
+<script>  
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx6vMEvvm_EgIqhYYr0UoGJjMWdsmSETv6HNEYZu3J661Ohle8/exec'  
+  const form = document.forms['machine']  
+  form.addEventListener('submit', e => {  
+   e.preventDefault()  
+   fetch('https://script.google.com/macros/s/AKfycbx6vMEvvm_EgIqhYYr0UoGJjMWdsmSETv6HNEYZu3J661Ohle8/exec', { method: 'POST', body: new FormData(form)})  
+    .then(response => console.log('Success!', response))  
+    .catch(error => console.error('Error!', error.message))  
+  })
+ </script>
+								
+   
+
+
+
+
+
+
+								
 							</article>
 
 						<!-- Elements -->
