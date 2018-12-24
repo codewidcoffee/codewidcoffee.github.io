@@ -29,6 +29,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+p.is-hidden {
+	visibility: hidden;
+}
+
 body {
 	line-height: 1;
 }
