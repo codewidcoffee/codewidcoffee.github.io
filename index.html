@@ -255,14 +255,14 @@
     function showSuccessMessage (response) {
       console.log('Success!', response)
       setTimeout(() => {
-        successMessage.classList.remove('is-hidden')
+           alert("Thank you for the registration!")
         loading.classList.add('is-hidden')
       }, 500)
     }
     function showErrorMessage (error) {
       console.error('Error!', error.message)
       setTimeout(() => {
-        errorMessage.classList.remove('is-hidden')
+         alert("Sorry an Error occured !")
         loading.classList.add('is-hidden')
       }, 500)
     }
