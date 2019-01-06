@@ -264,7 +264,11 @@
   form.addEventListener('submit', e => {
    e.preventDefault()
    fetch('https://script.google.com/macros/s/AKfycbx6vMEvvm_EgIqhYYr0UoGJjMWdsmSETv6HNEYZu3J661Ohle8/exec', { method: 'POST', body: new FormData(form)})
-    .then(response => console.log('Success!', response))
+    .then(function(response){
+    	var frm = document.getElementsByName('machine')[0];
+    	frm.reset;
+    	console.log('Sucess!', response)                   
+    })
     .catch(error => console.error('Error!', error.message))
   })
  </script>
